@@ -1,0 +1,37 @@
+version: 2
+
+sources:
+  - name: raw
+    description: Raw data landed from source systems (core banking, trading, custody)
+    database: "{{ target.database }}"
+    schema: raw_zone
+    tables:
+      - name: raw_customers
+        description: Customer master data from core banking system
+        columns:
+          - name: customer_id
+            description: Unique customer identifier
+            tests:
+              - not_null
+          - name: kyc_status
+            description: KYC approval status
+            tests:
+              - accepted_values:
+                  arguments:
+                    values: ['APPROVED', 'PENDING', 'REJECTED']
+
+      - name: raw_transactions
+        description: Transaction records from core banking system
+        columns:
+          - name: transaction_id
+            description: Unique transaction identifier
+            tests:
+              - not_null
+
+      - name: raw_positions
+        description: Position data reported by trading and custody systems
+        columns:
+          - name: position_id
+            description: Unique position identifier
+            tests:
+              - not_null
