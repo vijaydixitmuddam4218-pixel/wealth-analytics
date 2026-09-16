@@ -17,5 +17,3 @@ SELECT
     last_updated_ts
 FROM {{ source('raw', 'raw_positions') }}
 WHERE position_id IS NOT NULL
-  AND quantity > 0
-  AND price > 0
