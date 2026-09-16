@@ -1,7 +1,9 @@
 {{
     config(
         materialized='table',
-        tags=['marts', 'reconciliation']
+        tags=['marts', 'reconciliation'],
+        partition_by={'field': 'position_date', 'data_type': 'date'},
+        cluster_by=['reconciliation_status', 'customer_id']
     )
 }}
 
