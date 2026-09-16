@@ -1,0 +1,37 @@
+version: 2
+
+models:
+  - name: reconciliation_positions
+    description: Compares trading system vs custody system positions, flags mismatches
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: customer_id
+        data_type: int64
+        tests:
+          - not_null
+      - name: security_id
+        data_type: string
+      - name: position_date
+        data_type: date
+      - name: qty_trading_system
+        data_type: int64
+      - name: qty_custody_system
+        data_type: int64
+      - name: price_trading_system
+        data_type: float64
+      - name: price_custody_system
+        data_type: float64
+      - name: reconciliation_status
+        data_type: string
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['MATCH', 'QUANTITY_MISMATCH', 'PRICE_MISMATCH', 'MISSING_IN_TRADING', 'MISSING_IN_CUSTODY']
+      - name: dbt_run_date
+        data_type: timestamp
+      - name: dbt_run_id
+        data_type: string
+      - name: dbt_model_name
+        data_type: string
