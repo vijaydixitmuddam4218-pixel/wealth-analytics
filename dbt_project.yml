@@ -43,3 +43,6 @@ models:
     marts:
       +materialized: table
       +schema: analytics_zone
+
+on-run-end:
+  - "{{ log_dbt_run('SUCCESS' if results | selectattr('status', 'equalto', 'error') | list | length == 0 else 'FAILED') }}"
