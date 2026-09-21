@@ -1,0 +1,14 @@
+version: 2
+
+seeds:
+  - name: risk_category_lookup
+    description: "Static lookup mapping risk codes to labels"
+    config:
+      schema: analytics_zone
+    columns:
+      - name: risk_code
+        tests:
+          - not_null
+          - unique
+      - name: risk_label
+      - name: description

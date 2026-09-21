@@ -1,0 +1,4 @@
+risk_code,risk_label,description
+1,LOW,"Conservative portfolio, minimal volatility tolerance"
+2,MEDIUM,"Balanced portfolio, moderate volatility tolerance"
+3,HIGH,"Growth-focused portfolio, high volatility tolerance"
