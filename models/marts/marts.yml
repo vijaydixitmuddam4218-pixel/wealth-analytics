@@ -35,3 +35,10 @@ models:
         data_type: string
       - name: dbt_model_name
         data_type: string
+
+  - name: high_risk_transactions
+    description: Transactions exceeding the high-risk amount threshold, flagged for compliance review
+    tests:
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "amount > 0"
