@@ -20,7 +20,7 @@ WITH transactions_with_risk_code AS (
     FROM {{ ref('stg_transactions') }} t
     WHERE t.amount > CAST({{ get_config_value('HIGH_RISK_THRESHOLD') }} AS FLOAT64)
 )
-
+--final sql
 SELECT
     tr.transaction_id,
     tr.customer_id,
